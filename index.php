@@ -34,14 +34,14 @@ function KIcon($icons)
         <h2>Markets - Pull API Rekeningku.com v2</h2>
     </header>
     <main class="container-fluid">
-        <div class="">
+        <div class="containter bg-white py-2">
             <!-- <a href="exportData.php" target="_blank">Export Data</a> -->
             <a href="retrieveData.php" target="_blank" class="btn btn-sm btn-primary">Ambil Data</a>
             <a href="retrieveDataSingle.php" target="_blank" class="btn btn-sm btn-success">Ambil Data Another Method</a>
             <a href="perolehanData.php" target="_blank" class="btn btn-sm btn-warning">Lihat Perolehan Data</a>
         </div>
         <div class="">
-            <table id="coins" class="table table-sm table-responsive table-hover border shadow">
+            <table id="coins" class="table table-sm table-responsive table-hover shadow">
                 <thead class="bg-dark text-light fw-bold">
                     <th scope="col" class="">Pair</th>
                     <th scope="col">Koin</th>
@@ -70,14 +70,30 @@ function KIcon($icons)
                                     </div>
                                 </div>
                             </td>
-                            <td><?= $a['n']; ?></td>
-                            <td><?= number_format($a['c'], 2, ',', '.'); ?></td>
-                            <td><?= ($a['cp'] > 0) ? "<span style='color:green;'>" . number_format($a['cp'], 2, ',', '.') . "%</span>" : "<span style='color:red;'>" . number_format($a['cp'], 2, ',', '.') . "%</span>"; ?></td>
-                            <td><?= number_format($a["h"], 2, ',', '.'); ?></td>
-                            <td><?= number_format($a["l"], 2, ',', '.'); ?></td>
-                            <td><?= number_format($a['o'], 2, ',', '.'); ?></td>
-                            <td><?= number_format($a['v'], 2, ',', '.'); ?></td>
-                            <td><?= Simp(number_format($a['mk'], 2, ',', '.')); ?></td>
+                            <td>
+                                <div class="d-flex align-items-center py-2 pr-3 w-100"><?= $a['n']; ?></div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($a['c'], 2, ',', '.'); ?></div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center py-2 pr-3 w-100"><?= ($a['cp'] > 0) ? "<span style='color:green;'>" . number_format($a['cp'], 2, ',', '.') . "%</span>" : "<span style='color:red;'>" . number_format($a['cp'], 2, ',', '.') . "%</span>"; ?>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($a["h"], 2, ',', '.'); ?></div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($a["l"], 2, ',', '.'); ?></div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($a['o'], 2, ',', '.'); ?></div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($a['v'], 2, ',', '.'); ?></div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center py-2 pr-3 w-100"><?= Simp(number_format($a['mk'], 2, ',', '.')); ?></div>
+                            </td>
                             <!-- <td class="fw-bold"><?= ($a['tt'] == 1) ? "<span style='color:red;'>Buy<span>" : "<span style='color:green;'>Sell<span>"; ?></td> -->
                             <!-- <td><?= $a['st']; ?></td> -->
                         </tr>
