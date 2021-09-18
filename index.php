@@ -2,24 +2,12 @@
 date_default_timezone_set('Asia/Jakarta');
 require 'Koneksi.php';
 require 'CURL_API_Rekeningku.php';
-// require 'Querry_Function.php';
+require 'Querry_Function.php';
+require 'Theme_Function.php';
 
 $regis = curl("https://api.rekeningku.com/v2/price");
 $result = json_decode($regis, true);
 
-// fungsi penyederhanaan satuan rupiah
-function Simpl($rp)
-{
-    $simp = ['', '', 'Ribu', 'Juta', 'Milyar', 'Trilyun', 'Kuadriliun'];
-    $input = explode(".", $rp); // into index
-    return $input[0] . (count($input) > 1 ? ',' . round($input[1] / 10) : '') . ' ' . $simp[count($input)];
-}
-// fungsi pemilihan icon koin
-function KIcon($icons)
-{
-    return "https://images.rekeningku.com/accounts/" . strtolower(end($icons)) . ".png?v=6";
-    // print_r($icons);
-}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -32,27 +20,39 @@ function KIcon($icons)
 
 <nav class="navbar navbar-dark bg-dark shadow-lg mb-4">
     <div class="container-fluid px-4">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="https://www.rekeningku.com/markets">
             <img src="Public\icon\favicon-32x32.png" alt="" width="28" height="28" class="d-inline-block align-text-top me-2 rounded">
             API Rekeningku.com
         </a>
     </div>
 </nav>
 
-<body style="background: rgb(45,128,219);background: linear-gradient(0deg, rgba(45,128,219,1) 0%, rgba(43,174,228,1) 35%, rgba(0,212,255,1) 100%);">
+<body id="ajax_body" onload="startTime()" style="background: rgb(45,128,219);background: linear-gradient(0deg, rgba(45,128,219,1) 0%, rgba(43,174,228,1) 35%, rgba(0,212,255,1) 100%);">
     <main class="container-fluid py-3">
         <div class="content container bg-white rounded shadow-lg py-2">
             <div class="content-head container-fluid pt-3 pb-2">
                 <div>
-                    <h3><i class="fab fa-fw fa-bitcoin"></i> Markets - Pull API Rekeningku.com</h3>
+                    <h3 id="content-title"><i class="fab fa-fw fa-bitcoin"></i> Markets - Pull API <a class="text-dark text-decoration-none" href="https://www.rekeningku.com/markets">Rekeningku.com</a></h3>
                 </div>
                 <hr>
                 <!-- Btn -->
                 <div class="containter bg-white py-1">
                     <!-- <a href="exportData.php" target="_blank">Export Data</a> -->
-                    <a href="View_Database.php" target="_blank" class="btn btn-sm btn-success fw-bold shadow-sm"><i class="fas fa-fw fa-th-list"></i> Lihat Database</a>
-                    <a href="Push_Batch.php" target="_blank" class="btn btn-sm btn-primary fw-bold shadow-sm"><i class="fas fa-fw fa-database"></i> Push Batch ke DB</a>
-                    <a href="range_movement.php" target="_blank" class="btn btn-sm btn-warning fw-bold shadow-sm"><i class="fab fa-fw fa-gitter"></i> Lihat Range %</a>
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div id="back_btn"></div>
+                            <button type="button" onclick="Exchange_F()" href="View_Database.php" target="_blank" class="btn btn-sm btn-success fw-bold shadow-sm"><i class="fas fa-fw fa-th-list"></i> Lihat Database</button>
+                            <button href="range_movement.php" target="_blank" class="btn btn-sm btn-warning fw-bold shadow-sm"><i class="fab fa-fw fa-gitter"></i> Lihat Range %</button>
+                            <span class="mx-1"> | </span>
+                            <a href="Push_Batch.php" target="_blank" class="btn btn-sm btn-primary fw-bold shadow-sm"><i class="fas fa-fw fa-database"></i> Push Batch ke DB</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <h5 class="ms-4"><i class="fas fa-fw fa-clock"></i> UTC +7 (WIB) :</h5>
+                        </div>
+                        <div class="col-sm-1">
+                            <h5 class=""><span id="rclock"></span></h5>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- Table -->
@@ -120,6 +120,7 @@ function KIcon($icons)
                     </tbody>
                 </table>
             </div>
+            <p class="fw-bold"><i class="fas fa-fw fa-table"></i> Total Data : <span id="total_data"><?= $i; ?></span></p>
         </div>
     </main>
     <!-- </body> -->
