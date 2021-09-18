@@ -99,5 +99,5 @@ $result = json_decode($regis, true);
             </tbody>
         </table>
     </div>
-    <p class="fw-bold"><i class="fas fa-fw fa-table"></i> Total Data : <span id="total_data"><?= $i; ?></span> | <a href="https://api.rekeningku.com/v2/price"><i class="fas fa-fw fa-link"></i></a></p>
+    <p class="fw-bold"><i class="fas fa-fw fa-table"></i> Total Data : <span id="total_data"><?= $i; ?></span> | <a href="https://api.rekeningku.com/v2/price" target="_blank"><i class="fas fa-fw fa-link"></i></a></p>
 </div>

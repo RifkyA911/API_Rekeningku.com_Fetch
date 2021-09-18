@@ -37,13 +37,13 @@ require 'Theme_Function.php';
             <thead class="bg-dark text-light fw-bold shadow">
                 <th scope="col" class="ps-2">Pair</th>
                 <th scope="col">Koin</th>
-                <th scope="col">Harga Terakhir</th>
-                <th scope="col">Perubahan 24 Jam</th>
+                <th scope="col">Harga<br> Terakhir</th>
+                <th scope="col">Perubahan<br> 24 Jam</th>
                 <th scope="col">High</th>
                 <th scope="col">Low</th>
-                <th scope="col">Open Price</th>
-                <th scope="col">Volume 24 Jam</th>
-                <th scope="col">Market Cap</th>
+                <th scope="col">Open<br> Price</th>
+                <th scope="col">Volume<br> 24 Jam</th>
+                <th scope="col">Market<br> Cap</th>
                 <th scope="col">Retrieve_Time</th>
                 <!-- <th scope="col">Last Transaction</th> -->
                 <!-- <th>Security Token</th> -->
