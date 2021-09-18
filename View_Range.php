@@ -7,7 +7,7 @@ require 'Theme_Function.php';
 <div class="content container bg-white rounded shadow-lg py-2">
     <div class="content-head container-fluid pt-3 pb-2">
         <div>
-            <h3><i class="fas fa-fw fa-database"></i> View Database - Exchange</h3>
+            <h3><i class="fab fa-fw fa-gitter"></i> View Database - Range</h3>
         </div>
         <hr>
         <!-- Btn -->
@@ -15,10 +15,10 @@ require 'Theme_Function.php';
             <!-- <a href="exportData.php" target="_blank">Export Data</a> -->
             <div class="row">
                 <div class="col-sm-9">
-                    <button button type="button" onclick="Index_F()" href="index.php" class="btn btn-sm btn-danger fw-bold shadow-sm"><i class="fas fa-fw fa-chevron-circle-left"></i> Kembali</button>
+                    <button type="button" onclick="Index_F()" class="btn btn-sm btn-danger fw-bold shadow-sm"><i class="fas fa-fw fa-chevron-circle-left"></i> Kembali</button>
                     <span class="mx-1"> | </span>
-                    <a class="btn btn-sm btn-success fw-bold shadow-sm disabled" disabled><i class="fas fa-fw fa-th-list"></i> Lihat Database</a>
-                    <button type="button" onclick="Range_F()" href="range_movement.php" target="_blank" class="btn btn-sm btn-warning fw-bold shadow-sm"><i class="fab fa-fw fa-gitter"></i> Lihat Range %</button>
+                    <button type="button" onclick="Exchange_F()" class="btn btn-sm btn-success fw-bold shadow-sm"><i class="fas fa-fw fa-th-list"></i> Lihat Database</button>
+                    <button type="button" class="btn btn-sm btn-warning fw-bold shadow-sm disabled" disabled><i class="fab fa-fw fa-gitter"></i> Lihat Range %</button>
                     <span class="mx-1"> | </span>
                     <a href="Push_Batch.php" target="_blank" class="btn btn-sm btn-primary fw-bold shadow-sm"><i class="fas fa-fw fa-database"></i> Push Batch ke DB</a>
                 </div>
@@ -38,12 +38,14 @@ require 'Theme_Function.php';
                 <th scope="col" class="ps-2">Pair</th>
                 <th scope="col">Koin</th>
                 <th scope="col">Harga Terakhir</th>
-                <th scope="col">Perubahan 24 Jam</th>
-                <th scope="col">High</th>
-                <th scope="col">Low</th>
-                <th scope="col">Open Price</th>
-                <th scope="col">Volume 24 Jam</th>
-                <th scope="col">Market Cap</th>
+                <th scope="col">Perubahan<br>24 Jam</th>
+                <th scope="col">Range</th>
+                <th scope="col">Top</th>
+                <th scope="col">Lower</th>
+                <th scope="col">Range_%</th>
+                <th scope="col">Top_%</th>
+                <th scope="col">Lower_%</th>
+                <!-- <th scope="col">Status</th> -->
                 <th scope="col">Retrieve_Time</th>
                 <!-- <th scope="col">Last Transaction</th> -->
                 <!-- <th>Security Token</th> -->
@@ -91,20 +93,29 @@ require 'Theme_Function.php';
                             <div class="d-flex align-items-center py-2 pr-3 w-100"><?= ($ex['Change_Percentage'] > 0) ? "<span style='color:green;'>" . number_format($ex['Change_Percentage'], 2, ',', '.') . "%</span>" : "<span style='color:red;'>" . number_format($ex['Change_Percentage'], 2, ',', '.') . "%</span>"; ?>
                         </td>
                         <td>
-                            <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($ex["High"], 2, ',', '.'); ?></div>
+                            <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($ex["Range_V"], 2, ',', '.'); ?></div>
                         </td>
                         <td>
-                            <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($ex["Low"], 2, ',', '.'); ?></div>
+                            <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($ex["Top_V"], 2, ',', '.'); ?></div>
                         </td>
                         <td>
-                            <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($ex['Open'], 2, ',', '.'); ?></div>
+                            <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($ex['Lower_V'], 2, ',', '.'); ?></div>
                         </td>
                         <td>
-                            <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($ex['Volume'], 2, ',', '.'); ?></div>
+                            <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($ex['Range_P'], 2, ',', '.') . "%</span>"; ?></div>
                         </td>
                         <td>
+                            <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($ex['Top_P'], 2, ',', '.') . "%</span>"; ?></div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center py-2 pr-3 w-100"><?= number_format($ex['Lower_P'], 2, ',', '.') . "%</span>"; ?></div>
+                        </td>
+                        <!-- <td>
                             <div class="d-flex align-items-center py-2 pr-3 w-100"><?= Simpl(number_format($ex['Market_Cap'], 2, ',', '.')); ?></div>
-                        </td>
+                        </td> -->
+                        <!-- <td>
+                            <div class="d-flex align-items-center py-2 pr-3 w-100"><?= $ex["Status"]; ?></div>
+                        </td> -->
                         <td>
                             <div class="d-flex align-items-center py-2 pr-3 w-100"><?= $ex["Retrieve_Time"]; ?></div>
                         </td>
